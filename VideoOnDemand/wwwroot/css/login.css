@@ -2,13 +2,13 @@
     margin-top: 40px;
 }
 
-.login-panel, .register-panel{
+.login-panel, .register-panel {
     width: 300px;
-    border: none;
 }
 
-.login-panel-body, .register-panel-body{
-    border: 1px solid #cecece !important;
+.login-panel-body, .register-panel-body {
+    border: 1px solid #000000 !important;
+    background: #dadada;
     padding: 20px;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .icon-addon:hover .glyphicon{
-    color: #2580db;
+    color: #ffd800;
 }
 
 .login-form input, .register-form input{

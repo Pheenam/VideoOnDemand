@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - VideoOnDemand</title>
+    <title>@ViewData["Title"] - DefibCloud</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -38,7 +38,7 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img alt="Brand" src="~/images/defibtechLogo.svg" /></a>
             </div>
             <div class="navbar-collapse collapse">
-                @if (!SignInManager.IsSignedIn(User))
+                @if (SignInManager.IsSignedIn(User))
                 {
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
@@ -52,11 +52,12 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - VideoOnDemand</p>
-        </footer>
     </div>
+    <div class="footer">
+        <footer>
+            @await Html.PartialAsync("_Footer")
+        </footer>
+    </div>"
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

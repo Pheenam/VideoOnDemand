@@ -1,5 +1,5 @@
 ﻿.navbar{
-    background-color: #fff;
+    background-color: #ffd800;
     border-bottom: 1px solid #dadada;
 }
 
@@ -30,4 +30,8 @@
 .dropdown-menu li > a{
     color: #666c74;
     padding: 15px 40px 15px 20px;
+}
+
+.footer-panel{
+    padding: 10px;
 }
