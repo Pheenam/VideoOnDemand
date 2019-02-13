@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using VideoOnDemand.Models;
 
+using VideoOnDemand.Repositories;
+
 namespace VideoOnDemand.Controllers
 {
     public class HomeController : Controller
@@ -15,7 +17,13 @@ namespace VideoOnDemand.Controllers
 
         public IActionResult Index()
         {
-            if(!_signInManager.IsSignedIn(User))
+            var rep = new MockReadRepository();
+            var courses = rep.GetCourses("0830e0ea-293c-41d4-9d28-3c0b36e323f7");
+            var course = rep.GetCourse("0830e0ea-293c-41d4-9d28-3c0b36e323f7", 1);
+            var video = rep.GetVideo("0830e0ea-293c-41d4-9d28-3c0b36e323f7", 1);
+            var videos = rep.GetVideos("0830e0ea-293c-41d4-9d28-3c0b36e323f7", 1);
+            
+            if (!_signInManager.IsSignedIn(User))
             {
                 return RedirectToAction("Login", "Account");
             }
