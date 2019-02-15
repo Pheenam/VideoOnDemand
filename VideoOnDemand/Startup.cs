@@ -12,7 +12,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using VideoOnDemand;
 using VideoOnDemand.Data;
+using VideoOnDemand.Entities;
 using VideoOnDemand.Models;
+using VideoOnDemand.Modules.DTOModels;
+using VideoOnDemand.Repositories;
 using VideoOnDemand.Services;
 
 namespace VideoOnDemand
@@ -54,6 +57,37 @@ namespace VideoOnDemand
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            // Adding Created Reading Services
+            services.AddSingleton<IReadRepository, MockReadRepository>();
+
+            // DTO Mapper To Entity
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Video, VideoDTO>();
+
+                cfg.CreateMap<Download, DownloadDTO>()
+                    .ForMember(dest => dest.DownloadUrl, src => src.MapFrom(s => s.Url))
+                    .ForMember(dest => dest.DownloadTitle, src => src.MapFrom(s => s.Title));
+
+                cfg.CreateMap<Instructor, InstructorDTO>()
+                    .ForMember(dest => dest.InstructorName, src => src.MapFrom(s => s.Name))
+                    .ForMember(dest => dest.InstructorDescription, src => src.MapFrom(s => s.Description))
+                    .ForMember(dest => dest.InstructorAvatar, src => src.MapFrom(s => s.Thumbnail));
+
+                cfg.CreateMap<Course, CourseDTO>()
+                    .ForMember(dest => dest.CourseDescription, src => src.MapFrom(s => s.Description))
+                    .ForMember(dest => dest.CourseId, src => src.MapFrom(s => s.Id))
+                    .ForMember(dest => dest.CourseTitle, src => src.MapFrom(s => s.Title))
+                    .ForMember(dest => dest.CourseImageUrl, src => src.MapFrom(s => s.ImageUrl))
+                    .ForMember(dest => dest.MarqueeImageUrl, src => src.MapFrom(s => s.MarqueeImageUrl));
+
+                cfg.CreateMap<Module, ModuleDTO>()
+                    .ForMember(dest => dest.ModuleTitle, src => src.MapFrom(s => s.Title));
+
+            });
+
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,7 +108,6 @@ namespace VideoOnDemand
             }
 
             app.UseStaticFiles();
-
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
