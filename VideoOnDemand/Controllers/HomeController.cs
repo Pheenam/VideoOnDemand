@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using VideoOnDemand.Models;
+using VideoOnDemand.Repositories;
 
 namespace VideoOnDemand.Controllers
 {
@@ -20,12 +16,18 @@ namespace VideoOnDemand.Controllers
 
         public IActionResult Index()
         {
-            if(!_signInManager.IsSignedIn(User))
+            var rep = new MockReadRepository();
+            var courses = rep.GetCourses("0830e0ea-293c-41d4-9d28-3c0b36e323f7");
+            var course = rep.GetCourse("0830e0ea-293c-41d4-9d28-3c0b36e323f7", 1);
+            var video = rep.GetVideo("0830e0ea-293c-41d4-9d28-3c0b36e323f7", 1);
+            var videos = rep.GetVideos("0830e0ea-293c-41d4-9d28-3c0b36e323f7", 1);
+            
+            if (!_signInManager.IsSignedIn(User))
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            return View();
+            return RedirectToAction("Dashboard", "Membership");
         }
 
         public IActionResult About()
