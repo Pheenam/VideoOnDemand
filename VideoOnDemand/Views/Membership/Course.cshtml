@@ -25,21 +25,32 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-9">
-                        @foreach(var module in Model.Modules)
-                            {
-                                <div class="panel module">
-                                    <div class="panel-body">
-                                        <h5>@module.ModuleTitle</h5>
-                                    </div>
+                        @foreach (var module in Model.Modules)
+                        {
+                            <div class="panel module">
+                                <div class="panel-body">
+                                    <h5>@module.ModuleTitle</h5>
                                 </div>
+                            </div>
                             @if (module.Videos != null)
                             {
                                 @await Html.PartialAsync("_ModuleVideosPartial", module.Videos)
                             }
+                            @if (module.Downloads != null)
+                            {
+                                <hr class="no-margin" />
+                                <div class="panel-body download-panel">
+                                    <h5>Downloads</h5>
+                                    @await Html.PartialAsync("_ModuleDownloadsPartial", module.Downloads)
+                                </div>
+                            }
                         }
                     </div>
                     <div class="col-sm-3">
-                        @*Add instructor bio here*@
+                        @if(Model.Instructor != null)
+                        {
+                            @await Html.PartialAsync("_InstructorBioPartial", Model.Instructor)
+                        }
                     </div>
                 </div>
             </div>
