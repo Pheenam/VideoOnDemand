@@ -7,6 +7,10 @@
     margin-top: 25px;
 }
 
+.membership h1, .membership h4{
+    color: #666c74;
+}
+
 .membership h2{
     font-size: 1.5em;
 }

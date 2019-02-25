@@ -35,14 +35,23 @@ namespace VideoOnDemand.Repositories
                 ImageUrl = "/images/course3.jpg",
                 Title = "MVC 5 For Beginners",
                 Description = "Course 3 Description: A very very long description."
+            },
+            new Course
+            {
+                Id = 4,
+                InstructorId = 2,
+                MarqueeImageUrl = "/images/laptop.jpg",
+                ImageUrl = "/images/course4.jpg",
+                Title = "Programming C# Advance Tactics",
+                Description = "Course 4 Description: A very very long description."
             }
         };
         List<UserCourse> _userCourses = new List<UserCourse>()
         {
             new UserCourse{ UserId="0830e0ea-293c-41d4-9d28-3c0b36e323f7", CourseId=1},
-            new UserCourse{ UserId="00000000-0000-0000-0000-000000000000", CourseId=2},
+            new UserCourse{ UserId="df64bff6-cf41-4155-a7f9-c50c31dd207e", CourseId=2},
             new UserCourse{ UserId="0830e0ea-293c-41d4-9d28-3c0b36e323f7", CourseId=3},
-            new UserCourse{ UserId="00000000-0000-0000-0000-000000000000", CourseId=4}
+            new UserCourse{ UserId="df64bff6-cf41-4155-a7f9-c50c31dd207e", CourseId=4}
         };
         List<Module> _modules = new List<Module>()
         {
