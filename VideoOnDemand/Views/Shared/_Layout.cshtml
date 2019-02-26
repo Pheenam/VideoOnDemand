@@ -21,7 +21,8 @@
         <link rel="stylesheet" href="~/css/course.css" />
         <link rel="stylesheet" href="~/css/module.css" />
         <link rel="stylesheet" href="~/css/instructor-bio.css" />
-
+        <link rel="stylesheet" href="~/css/video.css" />
+        <link rel="stylesheet" href="https://unpkg.com/video.js/dist/video-js.min.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -35,6 +36,8 @@
         <link rel="stylesheet" href="~/css/course.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/module.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/instructor-bio.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/video.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://unpkg.com/video.js/dist/video-js.min.css" />
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -76,8 +79,12 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+        <script src="~/lib/videojs-youtube/dist/Youtube.js"></script>
     </environment>
     <environment names="Staging,Production">
+        <script src="~/lib/videojs-youtube/dist/Youtube.js"></script>
+        <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"

@@ -21,6 +21,17 @@
       "provider": "unpkg",
       "library": "jquery-validation-unobtrusive@3.2.6",
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "video.js@7.4.1",
+      "destination": "wwwroot/lib/videojs/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "videojs-youtube@2.6.0",
+      "destination": "wwwroot/lib/videojs-youtube/"
     }
+
   ]
 }

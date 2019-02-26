@@ -1,0 +1,31 @@
+@model VideoViewModel
+
+<div class="panel">
+    @if (Model.Video.Url != null)
+    {
+        <video id="video" class="video-js vjs-default-skin video-margin" controls preload="auto"></video>
+        <div id="hiddenUrl" hidden="hidden">@Model.Video.Url</div>
+        <div id="hiddenImageUrl" hidden="hidden">@Model.Video.Thumbnail</div>
+    }
+    <div class="panel-body">
+        <h2 class="text-dark">@Model.Video.Title</h2>
+        <p class="text-light">
+            <i class="glyphicon glyphicon-facetime-video"></i>
+            Lesson @Model.LessonInfo.NumberOfLessons&nbsp;&nbsp;
+            <i class="glyphicon glyphicon-time"></i>
+            @Model.Video.Duration minutes
+        </p>
+        <div class="media-object">
+            <img src="@Model.Course.CourseImageUrl" />
+        </div>
+        <div class="media-body media-middle">
+            <p>@Model.Course.CourseTitle</p>
+        </div>
+    </div>
+
+    <hr class="no-margin" />
+
+    <div class="panel-body">
+        @Model.Video.Description
+    </div>
+</div>
