@@ -58,7 +58,7 @@ namespace VideoOnDemand
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             // Adding Created Reading Services
-            services.AddSingleton<IReadRepository, MockReadRepository>();
+            services.AddSingleton<IReadRepository, SqlReadRepository>();
 
             // DTO Mapper To Entity
             var config = new AutoMapper.MapperConfiguration(cfg =>
@@ -91,7 +91,8 @@ namespace VideoOnDemand
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            ApplicationDbContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -118,6 +119,8 @@ namespace VideoOnDemand
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            DbInitializer.Initialize(context);
         }
     }
 }
