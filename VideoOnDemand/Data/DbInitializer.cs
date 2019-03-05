@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using VideoOnDemand.Entities;
+using VideoOnDemand.Models;
 
 namespace VideoOnDemand.Data
 {
     public class DbInitializer
     {
-        public static void Initialize(ApplicationDbContext context)
+        public static async void Initialize(ApplicationDbContext context)
         {
             #region seed data
             var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
@@ -17,7 +21,38 @@ namespace VideoOnDemand.Data
             // All data will be deleted with the database and cannot be recovered
             //context.Database.EnsureDeleted();
             //context.Database.EnsureCreated();
-            
+
+            // Seed User with Admin role + privledges
+            /*var user = new ApplicationUser
+            {
+                UserName = "Email@email.com",
+                NormalizedUserName = "email@email.com",
+                Email = "Email@email.com",
+                NormalizedEmail = "email@email.com",
+                EmailConfirmed = true,
+                LockoutEnabled = false,
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+
+            var roleStore = new RoleStore<IdentityRole>(context);
+
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                await roleStore.CreateAsync(new IdentityRole { Name = "Admin", NormalizedName = "Admin" });
+            }
+
+            if (!context.Users.Any(u => u.UserName == user.UserName))
+            {
+                var password = new PasswordHasher<ApplicationUser>();
+                var hashed = password.HashPassword(user, "password");
+                user.PasswordHash = hashed;
+                var userStore = new UserStore<ApplicationUser>(context);
+                await userStore.CreateAsync(user);
+                await userStore.AddToRoleAsync(user, "Admin");
+            }
+
+            await context.SaveChangesAsync();*/
+
             // Look for any courses to check if the DB has been seeded
             if (context.Instructors.Any())
             {
