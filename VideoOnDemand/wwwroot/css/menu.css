@@ -3,6 +3,18 @@
     border-bottom: 1px solid #dadada;
 }
 
+.navbar-brand{
+    padding-top: 21px;
+}
+
+ul.navbar-right{
+    padding-top: 8px;
+}
+
+.navbar .container{
+    min-height: 70px;
+}
+
 .navbar .navbar-brand img{
     max-height: 25px;
 }
